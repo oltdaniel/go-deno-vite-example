@@ -1,0 +1,36 @@
+<!-- layout: default.html -->
+
+<div>
+    <button id="btn-ping">Get Ping</button>
+
+    <button id="btn-random">Get Random</button>
+    
+    <button id="btn-randommessage">Get RandomMessage</button>    
+</div>
+
+<textarea id="output" style="width: 100%; height: 10vh;" readonly></textarea>
+
+<script type="module">
+    import '@lib/debugmessage'
+    import { apiGetPing, apiGetRandom, apiGetMessage } from '@lib/api'
+
+    const outputEl = document.getElementById('output')
+
+    function outputAndScroll(msg) {
+        output.value += msg
+        output.value += '\n'
+        output.scrollTop = output.scrollHeight;
+    }
+
+    document.getElementById('btn-ping').onclick = async () => {
+        outputAndScroll(await apiGetPing())
+    }
+
+    document.getElementById('btn-random').onclick = async () => {
+        outputAndScroll(await apiGetRandom())
+    }
+
+    document.getElementById('btn-randommessage').onclick = async () => {
+        outputAndScroll(JSON.stringify(await apiGetMessage(), null, 2))
+    }
+</script>

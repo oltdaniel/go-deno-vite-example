@@ -1,0 +1,16 @@
+{
+  "version": "4",
+  "specifiers": {
+    "jsr:@std/async@*": "1.0.11"
+  },
+  "jsr": {
+    "@std/async@1.0.11": {
+      "integrity": "eee0d3405275506638a9c8efaa849cf0d35873120c69b7caa1309c9a9e5b6f85"
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/async@^1.0.11"
+    ]
+  }
+}

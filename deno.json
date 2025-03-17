@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "run": "./bin/server",
+    "dev": "deno run --allow-read --allow-run dev.ts",
+    "build": "deno task build:web && deno task build:go",
+    "build:web": "cd web && ./build.sh",
+    "build:go": "go build -o bin/server cmd/server/main.go"
+  },
+  "imports": {
+    "@std/async": "jsr:@std/async@^1.0.11"
+  }
+}

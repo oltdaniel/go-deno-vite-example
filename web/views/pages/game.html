@@ -1,0 +1,59 @@
+<!-- layout: default.html -->
+
+<div id="container"></div>
+
+<script type="module">
+  // Source: https://vanjs.org/demo#game (I slightly modified it)
+  import van from "vanjs-core";
+
+  const { button, div, pre } = van.tags;
+
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const Run = ({ sleepMs }) => {
+    const steps = van.state(0);
+    (async () => {
+      for (; steps.val < 40; ++steps.val) await sleep(sleepMs);
+    })();
+    return pre(() =>
+      `${" ".repeat(40 - steps.val)}🚐💨Hello VanJS!${
+        "_".repeat(steps.val)
+      }`
+    );
+  };
+
+  const Hello = () => {
+    const dom = div();
+    return div(
+      button(
+        { onclick: () => van.add(dom, Run({ sleepMs: 2000 })) },
+        "Hello 🐌",
+      ),
+      button(
+        { onclick: () => van.add(dom, Run({ sleepMs: 500 })) },
+        "Hello 🐢",
+      ),
+      button(
+        { onclick: () => van.add(dom, Run({ sleepMs: 100 })) },
+        "Hello 🚶‍♂️",
+      ),
+      button(
+        { onclick: () => van.add(dom, Run({ sleepMs: 10 })) },
+        "Hello 🏎️",
+      ),
+      button(
+        { onclick: () => van.add(dom, Run({ sleepMs: 2 })) },
+        "Hello 🚀",
+      ),
+      button(
+        { onclick: () => dom.innerHTML = "" },
+        "Clear ❌",
+      ),
+      dom,
+    );
+  };
+
+  const containerEl = document.getElementById("container");
+
+  van.add(containerEl, Hello());
+</script>
