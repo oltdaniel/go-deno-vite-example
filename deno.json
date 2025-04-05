@@ -1,9 +1,9 @@
 {
   "tasks": {
     "run": "./bin/server",
-    "dev": "deno run --allow-read --allow-run dev.ts",
+    "dev": "deno run --allow-read --allow-run scripts/dev.ts",
     "build": "deno task build:web && deno task build:go",
-    "build:web": "cd web && ./build.sh",
+    "build:web": "cd web && deno task build",
     "build:go": "go build -o bin/server cmd/server/main.go"
   },
   "imports": {
